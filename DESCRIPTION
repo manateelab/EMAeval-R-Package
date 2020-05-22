@@ -1,0 +1,27 @@
+Package: EMAeval
+Type: Package
+Title: Identification of Careless Responses and Responders in EMA Data
+Version: 1.0.0
+Authors@R: 
+    person(given = "Noah",
+           family = "Kraus",
+           role = c("aut", "cre"),
+           email = "nxk327@miami.edu")
+Maintainer: Noah Kraus <nxk327@miami.edu>
+Description: This package is used to scan EMA data for responses that are deemed careless.
+    The responses are tallied, and participants who have a certain number of careless reponses are flagged.
+    These "Careless Responders" are identified, allowing the user to alert participants or remove the "careless" responses.
+Depends: R (>= 3.6.1)
+Imports:
+   DescTools (>= 	0.99.28),
+   ggplot2 (>= 3.2.1), 
+   gridExtra (>= 2.3), 
+   lsr (>= 0.5),
+   lubridate (>= 1.7.4),
+   plyr (>= 1.8.4),
+   dplyr (>= 0.8.4),
+   reshape (>= 0.8.8),
+   smooth (>= 2.5.5)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.0
