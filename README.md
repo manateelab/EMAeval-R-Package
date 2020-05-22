@@ -220,7 +220,7 @@ Below are the functions in the R package EMAeval. The functions are:
 Each section will be dedicated to a particular function, giving an example of the usage with the EMAeval\_Data and showing the output.
 
 
-</style>
+
 flagging\_df
 ------------
 
