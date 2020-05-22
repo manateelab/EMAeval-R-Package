@@ -8,7 +8,7 @@ There are 4 "participants," each having 50 assessments. Each was asked 8 questio
 
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-EMAeval\_Data Example
+EMAeval_Data Example
 </caption>
 <thead>
 <tr>
