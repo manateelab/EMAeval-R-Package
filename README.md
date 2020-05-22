@@ -1528,6 +1528,7 @@ Percent_Flagged
 </table>
 
 
+Notes
+===============
 
-
-For now, these are the only functions in the EMAeval package. They will be updated based on the need for further expansion of uses. If you have any question, please see the DESCRIPTION file to contact the maintainer.
+**For now, these are the only functions in the EMAeval package. They will be updated based on the need for further expansion of uses. If you have any question, please see the DESCRIPTION file to contact the maintainer.**
