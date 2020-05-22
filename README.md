@@ -338,7 +338,7 @@ flagging_plots(EMAeval_Data, ttc.colnames = c("StartDate", "EndDate"), item.coln
 *Note: the Longstring histogram has a much smaller scale for the Count. This is due to the lack of longstring values because many assessments do not have a Longstring value because all item responses differ.*
 
 
-</style>
+
 TPI\_cutoff
 -----------
 
@@ -1168,7 +1168,7 @@ Index_of_Flagged_Assessment
 </table>
 
 
-</style>
+
 Combined\_cutoff
 ----------------
 
@@ -1526,3 +1526,8 @@ Percent_Flagged
 </tr>
 </tbody>
 </table>
+
+
+
+
+For now, these are the only functions in the EMAeval package. They will be updated based on the need for further expansion of uses. If you have any question, please see the DESCRIPTION file to contact the maintainer.
