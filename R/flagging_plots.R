@@ -13,11 +13,11 @@
 #' @param ttc.plotx.max numeric that will set the upper limit of the x-axis of Time to Complete histogram, default is 100.
 #' @param sd.plotx.max numeric that will set the upper limit of the x-axis of Standard Deviation histogram, default is 50.
 #' @param longstring.plotx.max numeric that will set the upper limit of the x-axis of Time to Complete histogram, default is 100.
-#' @return The item \code{"ttc.colnames"} must be the names of columns, corresponding to Start Time and End Time, ordered \code{ttc.colnames = c("StartTime", "EndTime")} start time first, follwed by end time. If the data includes assessment duration, then list the column name that corresponds with assessment completion: \code{ttc.colnames = "SurveyDuration"}
-#' @return The item \code{"item.colnames"} must be the column names of all items to be included in the calculations for Item Score Standard Deviation. The base function \code{colnames} can be utilized if user prefers. If columns \code{x} through \code{y} are to be used for this calculation, the following syntax must be followed: \code{item.colnames = colnames(data[,x:y])} Example of use with column names can bee seeen below.
+#' @return The item \code{"ttc.colnames"} must be the names of columns, corresponding to Start Time and End Time, ordered \code{ttc.colnames = c("StartTime", "EndTime")} start time first, followed by end time. If the data includes assessment duration, then list the column name that corresponds with assessment completion: \code{ttc.colnames = "SurveyDuration"}
+#' @return The item \code{"item.colnames"} must be the column names of all items to be included in the calculations for Item Score Standard Deviation. The base function \code{colnames} can be utilized if user prefers. If columns \code{x} through \code{y} are to be used for this calculation, the following syntax must be followed: \code{item.colnames = colnames(data[,x:y])} Example of use with column names can bee seen below.
 #' @seealso \code{\link{flagging_df}} for the dataframe that was used for these histograms. \code{\link{longstringr}} provides a dataframe of all the longstring values
 #' @seealso The following functions once cutoff values have been determined: \code{\link{TPI_cutoff}}, \code{\link{SD_cutoff}}, \code{\link{Combined_cutoff}}, and \code{\link{Combined_cutoff_percent}}
-#' @references Jaso, B.A., Kraus, N.I., Heller, A.S. (2020) \emph{Methods to automatically identify careless responding in ecological momentary assessment research: from post-hoc analyses to real-time data monitoring.}
+#' @references Jaso, B.A., Kraus, N.I., Heller, A.S. (2020) \emph{Identification of careless responding in ecological momentary assessment: from post-hoc analyses to real-time data monitoring.}
 #'
 #' @export
 

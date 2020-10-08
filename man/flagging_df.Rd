@@ -16,7 +16,7 @@ flagging_df(data, ttc.colnames, item.colnames)
 \value{
 The item \code{"ttc.colnames"} must be the names of columns, corresponding to Start Time and End Time, ordered \code{ttc.colnames = c("StartTime", "EndTime")} start time first, follwed by end time. If the data includes assessment duration, then list the column name that corresponds with assessment completion: \code{ttc.colnames = "SurveyDuration"}.
 
-The item \code{"item.colnames"} must be the column names of all items to be included in the calculations for Item Score Standard Deviation. The base function \code{colnames} can be utilized if user prefers. If columns \code{x} through \code{y} are to be used for this calculation, the following syntax must be followed: \code{item.colnames = colnames(data[,x:y])} Example of use with column names can bee seeen below.
+The item \code{"item.colnames"} must be the column names of all items to be included in the calculations for Item Score Standard Deviation. The base function \code{colnames} can be utilized if user prefers. If columns \code{x} through \code{y} are to be used for this calculation, the following syntax must be followed: \code{item.colnames = colnames(data[,x:y])} Example of use with column names can bee seen below.
 }
 \description{
 \code{flagging_df} returns dataframe of Time to Complete per assessment, Time per Item per assessment, Standard Deviation of item response per assessment, and Longstring.
@@ -25,7 +25,7 @@ The item \code{"item.colnames"} must be the column names of all items to be incl
 This function creates the dataframe of Time to Complete, Time Per Item, Item Score Standard Deviation, and Longstring. See function \code{flagging_plots} for the histograms that are compiled from this dataframe.
 }
 \references{
-Jaso, B.A., Kraus, N.I., Heller, A.S. (2020) \emph{Methods to automatically identify careless responding in ecological momentary assessment research: from post-hoc analyses to real-time data monitoring.}
+Jaso, B.A., Kraus, N.I., Heller, A.S. (2020) \emph{Identification of careless responding in ecological momentary assessment: from post-hoc analyses to real-time data monitoring.}
 }
 \seealso{
 \code{\link{flagging_plots}} for the histograms that were created from this dataframe.

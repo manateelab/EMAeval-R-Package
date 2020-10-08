@@ -2,11 +2,12 @@
 % Please edit documentation in R/TPI_cutoff.R
 \name{TPI_cutoff}
 \alias{TPI_cutoff}
-\title{Identification of Careless Reponse Using Standard Deviation}
+\title{Identification of Careless Response Using Standard Deviation}
 \usage{
 TPI_cutoff(
   data,
   cutoff,
+  condition,
   ttc.colnames,
   number.items,
   mandatory.response,
@@ -17,7 +18,9 @@ TPI_cutoff(
 \arguments{
 \item{data}{dataframe to be analyzed.}
 
-\item{cutoff}{numeric cutoff value for Time per Item.}
+\item{cutoff}{numeric cutoff value for Time per Item, 'default' value set to 1 second.}
+
+\item{condition}{character string of condition that is desired for comparison of data to TPI cutoff value, i.e <, >=, etc. 'Default' logic set to "<=".}
 
 \item{ttc.colnames}{vector of column names of "Start Time" and "End Time" to calculate time to complete, also can be "Completion Time" if already calculated.}
 
@@ -43,10 +46,10 @@ If there is variability in the items that are asked, mark the item \code{"mandat
 This function creates the dataframe that includes the ID and index of assessments that met the cutoff criterion for Standard Deviation per assessment. If an assessment has a Standard Deviation \strong{less than or equal to} the cutoff value, it will be flagged and placed in the dataframe.
 }
 \references{
-Jaso, B.A., Kraus, N.I., Heller, A.S. (2020) \emph{Methods to automatically identify careless responding in ecological momentary assessment research: from post-hoc analyses to real-time data monitoring.}
+Jaso, B.A., Kraus, N.I., Heller, A.S. (2020) \emph{Identification of careless responding in ecological momentary assessment: from post-hoc analyses to real-time data monitoring.}
 }
 \seealso{
-\code{\link{SD_cutoff}} for a similar fuction, using Standard Deviation rather than Time per Item.
+\code{\link{SD_cutoff}} for a similar function, using Standard Deviation rather than Time per Item.
 
 See the following functions for more information on Careless Response Identification in EMA: \code{\link{flagging_df}}, \code{\link{flagging_plots}}, \code{\link{longstringr}}, \code{\link{Combined_cutoff}}, and \code{\link{Combined_cutoff_percent}}
 }

@@ -1,0 +1,189 @@
+---
+title: "EMAeval_Description"
+author: "Noah Kraus"
+date: "10/07/2020"
+output: rmarkdown::github_document
+always_allow_html: TRUE
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# EMAeval R Markdown
+
+The R package EMAeval contains functions created to help researchers identify careless responses as well as responders ine EMA data. An example dataset is included in the package to help the user better understand the uses of each function. This dataset "EMAeval_Data" is used in the example code below. 
+
+There are 4 "participants," each having 50 assessments. Each was asked 8 questions per assessment. 
+
+```{r message=FALSE, warning=FALSE,echo=FALSE}
+library(EMAeval)
+library(knitr)
+library(kableExtra)
+knitr::opts_chunk$set(opts.label="kill_prefix")
+
+EMAeval_Data <- EMAeval::EMAeval_Data
+kable(EMAeval_Data[c(1,56,111,172),], caption = "EMAeval_Data Example", row.names = TRUE) %>%
+  kable_styling()
+```
+
+#Functions
+Below are the functions in the R package EMAeval. The functions are:
+
+* flagging_df
+* flagging_plots
+* TPI_cutoff
+* SD_cutoff
+* Combined_cutoff
+* Combined_cutoff_percent
+
+Each section will be dedicated to a particular function, giving an example of the usage with the EMAeval_Data and showing the output.
+
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 10px; padding: 20px;}
+</style>
+<div class = "blue">
+## flagging_df
+
+*This function creates a dataframe that reports Time to Complete (TTC), Time per Item (TPI), Item Standard Deviation (SD), and Longstring. If the Longstring returns NA, then there was no longstring response because all item responses were different. The partial results of the flagging_df function are based from the EMAeval_Data Example above. *
+
+``` {r  eval = FALSE}
+flaggingDF <- flagging_df(EMAeval_Data, ttc.colnames = c("StartDate", "EndDate"), item.colnames = colnames(EMAeval_Data[,4:11]))
+```
+
+```{r  message=FALSE, warning=FALSE, echo=FALSE}
+library(EMAeval)
+library(knitr)
+library(kableExtra)
+
+EMAeval_Data <- EMAeval::EMAeval_Data
+flaggingDF <- flagging_df(EMAeval_Data, ttc.colnames = c("StartDate", "EndDate"), item.colnames = colnames(EMAeval_Data[,4:11]))
+kable(flaggingDF[c(1,56,111,172),], caption = "Flagging Dataframe Example", row.names = TRUE) %>%
+  kable_styling() 
+```
+</div>
+
+
+## flagging_plots
+
+*This function creates a histograms of each of the  calculations reported in the flagging_df function. This can be used to help users identify the cutoff values for TPI and SD.*  
+
+``` {r eval = FALSE}
+flagging_plots(EMAeval_Data, ttc.colnames = c("StartDate", "EndDate"), item.colnames = colnames(EMAeval_Data[,4:11]), number.items = 8)
+```
+
+```{r message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6,  echo=FALSE}
+library(EMAeval)
+library(knitr)
+library(kableExtra)
+
+EMAeval_Data <- EMAeval::EMAeval_Data
+flagging_plots(EMAeval_Data, ttc.colnames = c("StartDate", "EndDate"), item.colnames = colnames(EMAeval_Data[,4:11]),number.items = 8)
+```
+
+*Note: the Longstring histogram has a much smaller scale for the Count. This is due to the lack of longstring values because many assessments do not have a Longstring value because all item responses differ.*
+
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 10px; padding: 20px;}
+</style>
+<div class = "blue">
+## TPI_cutoff
+
+*This function creates a dataframe of ID and data indices in which the assessment met the cutoff criterion for Time per Item. The user inputs their own cutoff for TPI. If responses to all items are mandatory, then the following response should be included:*
+```
+mandatory.response = TRUE
+```
+*Below is the code for the function.*
+``` {r eval = FALSE}
+TPI_cutoff(EMAeval_Data, cutoff = 1, condition = "<=",  ttc.colnames = c("StartDate", "EndDate"),  number.items = 8, mandatory.response = TRUE, item.colnames = colnames(EMAeval_Data[,4:11]), ID.colname = "ID")
+```
+
+```{r message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6,  echo=FALSE}
+library(EMAeval)
+library(knitr)
+library(kableExtra)
+
+EMAeval_Data <- EMAeval::EMAeval_Data
+TPI_cutoff_DF <- TPI_cutoff(EMAeval_Data, cutoff = 1, condition = "<=", ttc.colnames = c("StartDate", "EndDate"),  number.items = 8, mandatory.response = TRUE, item.colnames = colnames(EMAeval_Data[,4:11]), ID.colname = "ID")
+
+kable(TPI_cutoff_DF, caption = "Assessments Flagged by TPI Cutoff", row.names = FALSE) %>%
+  kable_styling() %>%
+  scroll_box(width = "100%" , height = "400px") 
+```
+</div>
+
+## SD_cutoff
+
+*This function creates a dataframe of ID and data indices in which the assessment met the cutoff criterion for Item Score Standard Deviation. The user inputs their own cutoff for SD. *
+
+*Below is the code for the function.*
+``` {r eval = FALSE}
+SD_cutoff(EMAeval_Data, cutoff = 5,  condition = "<=", item.colnames = colnames(EMAeval_Data[,4:11]), ID.colname = "ID")
+```
+
+```{r message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6,  echo=FALSE}
+library(EMAeval)
+library(knitr)
+library(kableExtra)
+
+EMAeval_Data <- EMAeval::EMAeval_Data
+SD_cutoff_DF <- SD_cutoff(EMAeval_Data, cutoff = 5,  condition = "<=",  item.colnames = colnames(EMAeval_Data[,4:11]), ID.colname = "ID")
+
+kable(SD_cutoff_DF, caption = "Assessments Flagged by SD Cutoff", row.names = FALSE) %>%
+  kable_styling() %>%
+  scroll_box(width = "100%" , height = "400px") 
+```
+
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 10px; padding: 20px;}
+</style>
+<div class = "blue">
+## Combined_cutoff
+
+*This function creates a dataframe of ID and data indices in which the assessment met the cutoff criteria for Time per Item as well as Item Score Standard Deviation. The user inputs their own cutoff for TPI. If responses to all items are mandatory, then the following response should be included:*
+```
+mandatory.response = TRUE
+```
+*Below is the code for the function.*
+``` {r eval = FALSE}
+Combined_cutoff(EMAeval_Data, SD.cutoff = 5, SD.condition = "<=", TPI.cutoff = 1, TPI.condition = "<=", Combined.logic = "or", ttc.colnames = c("StartDate", "EndDate"),  number.items = 8, mandatory.response = TRUE, item.colnames = colnames(EMAeval_Data[,4:11]), ID.colname = "ID")
+```
+
+```{r message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6,  echo=FALSE}
+library(EMAeval)
+library(knitr)
+library(kableExtra)
+
+EMAeval_Data <- EMAeval::EMAeval_Data
+Combined_cutoff_DF <- Combined_cutoff(EMAeval_Data,SD.cutoff = 5, SD.condition = "<=", TPI.cutoff = 1, TPI.condition = "<=", Combined.logic = "or", ttc.colnames = c("StartDate", "EndDate"),  number.items = 8, mandatory.response = TRUE, item.colnames = colnames(EMAeval_Data[,4:11]), ID.colname = "ID")
+
+kable(Combined_cutoff_DF, caption = "Assessments Flagged by both TPI and SD Cutoffs", row.names = FALSE) %>%
+  kable_styling() %>%
+  scroll_box(width = "100%" , height = "400px") 
+```
+</div>
+
+
+## Combined_cutoff_percent
+
+*This function creates a dataframe of ID and data indices in which the assessment met the cutoff criteria for Time per Item as well as Item Score Standard Deviation. The user inputs their own cutoff for TPI. If responses to all items are mandatory, then the following response should be included:*
+```
+mandatory.response = TRUE
+```
+*Below is the code for the function.*
+``` {r eval = FALSE}
+Combined_cutoff_percent(EMAeval_Data, SD.cutoff = 5, SD.condition = "<=", TPI.cutoff = 1, TPI.condition = "<=", Combined.logic = "or",, ttc.colnames = c("StartDate", "EndDate"),  number.items = 8, mandatory.response = TRUE, item.colnames = colnames(EMAeval_Data[,4:11]), ID.colname = "ID")
+```
+
+```{r message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6,  echo=FALSE}
+library(EMAeval)
+library(knitr)
+library(kableExtra)
+
+EMAeval_Data <- EMAeval::EMAeval_Data
+Combined_cutoff_percent_DF <- Combined_cutoff_percent(EMAeval_Data, SD.cutoff = 5, SD.condition = "<=", TPI.cutoff = 1, TPI.condition = "<=", Combined.logic = "or", ttc.colnames = c("StartDate", "EndDate"),  number.items = 8, mandatory.response = TRUE, item.colnames = colnames(EMAeval_Data[,4:11]), ID.colname = "ID")
+
+kable(Combined_cutoff_percent_DF, caption = "Percentage of Assessments Flagged by both TPI and SD Cutoffs", row.names = FALSE) %>%
+  kable_styling()
+```
+

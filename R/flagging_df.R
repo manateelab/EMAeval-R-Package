@@ -1,19 +1,19 @@
 #' EMA Careless Response Cutoff Determination Dataframe
-#' 
+#'
 #' \code{flagging_df} returns dataframe of Time to Complete per assessment, Time per Item per assessment, Standard Deviation of item response per assessment, and Longstring.
-#' 
+#'
 #' This function creates the dataframe of Time to Complete, Time Per Item, Item Score Standard Deviation, and Longstring. See function \code{flagging_plots} for the histograms that are compiled from this dataframe.
 #'
 #' @param data dataframe to be analyzed.
 #' @param ttc.colnames vector of column names of "Start Time" and "End Time" to calculate time to complete, also can be "Completion Time" if already calculated.
 #' @param item.colnames vector of column names of all items/questions to be used to calculate item score Standard Deviation and Longstring responses.
 #' @return  The item \code{"ttc.colnames"} must be the names of columns, corresponding to Start Time and End Time, ordered \code{ttc.colnames = c("StartTime", "EndTime")} start time first, follwed by end time. If the data includes assessment duration, then list the column name that corresponds with assessment completion: \code{ttc.colnames = "SurveyDuration"}.
-#' @return The item \code{"item.colnames"} must be the column names of all items to be included in the calculations for Item Score Standard Deviation. The base function \code{colnames} can be utilized if user prefers. If columns \code{x} through \code{y} are to be used for this calculation, the following syntax must be followed: \code{item.colnames = colnames(data[,x:y])} Example of use with column names can bee seeen below.
-#' @seealso \code{\link{flagging_plots}} for the histograms that were created from this dataframe. 
+#' @return The item \code{"item.colnames"} must be the column names of all items to be included in the calculations for Item Score Standard Deviation. The base function \code{colnames} can be utilized if user prefers. If columns \code{x} through \code{y} are to be used for this calculation, the following syntax must be followed: \code{item.colnames = colnames(data[,x:y])} Example of use with column names can bee seen below.
+#' @seealso \code{\link{flagging_plots}} for the histograms that were created from this dataframe.
 #' @seealso \code{\link{longstringr}} provides a dataframe of all the longstring values.
-#' @seealso The following functions once cutoff values have been determined: \code{\link{TPI_cutoff}}, \code{\link{SD_cutoff}}, \code{\link{Combined_cutoff}}, and \code{\link{Combined_cutoff_percent}} 
-#' @references Jaso, B.A., Kraus, N.I., Heller, A.S. (2020) \emph{Methods to automatically identify careless responding in ecological momentary assessment research: from post-hoc analyses to real-time data monitoring.}
-#'  
+#' @seealso The following functions once cutoff values have been determined: \code{\link{TPI_cutoff}}, \code{\link{SD_cutoff}}, \code{\link{Combined_cutoff}}, and \code{\link{Combined_cutoff_percent}}
+#' @references Jaso, B.A., Kraus, N.I., Heller, A.S. (2020) \emph{Identification of careless responding in ecological momentary assessment: from post-hoc analyses to real-time data monitoring.}
+#'
 #' @export
 
 flagging_df <- function(data, ttc.colnames, item.colnames){
