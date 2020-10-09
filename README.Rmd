@@ -1,5 +1,5 @@
 ---
-title: "EMAeval_Description"
+title: "EMAeval Description"
 author: "Noah Kraus"
 date: "10/07/2020"
 output: rmarkdown::github_document
@@ -74,6 +74,7 @@ flagging_plots(EMAeval_Data, ttc.colnames = c("StartDate", "EndDate"), item.coln
 
 ```{r message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6,  echo=FALSE}
 library(EMAeval)
+library(ggplot2)
 library(knitr)
 library(kableExtra)
 
@@ -89,7 +90,7 @@ div.blue { background-color:#e6f0ff; border-radius: 10px; padding: 20px;}
 <div class = "blue">
 ## TPI_cutoff
 
-*This function creates a dataframe of ID and data indices in which the assessment met the cutoff criterion for Time per Item. The user inputs their own cutoff for TPI. If responses to all items are mandatory, then the following response should be included:*
+*This function creates a dataframe of ID and data indices in which the assessment met the cutoff criterion for Time per Item. The user inputs their own cutoff for TPI. The user can also specify what type of comparison they would like to complete with the cutoff value using  __TPI.condition =...__ If responses to all items are mandatory, then the following response should be included:*
 ```
 mandatory.response = TRUE
 ```
@@ -114,7 +115,7 @@ kable(TPI_cutoff_DF, caption = "Assessments Flagged by TPI Cutoff", row.names = 
 
 ## SD_cutoff
 
-*This function creates a dataframe of ID and data indices in which the assessment met the cutoff criterion for Item Score Standard Deviation. The user inputs their own cutoff for SD. *
+*This function creates a dataframe of ID and data indices in which the assessment met the cutoff criterion for Item Score Standard Deviation. The user inputs their own cutoff for SD. The user can also specify what type of comparison they would like to complete with the cutoff value using  __SD.condition =...__*
 
 *Below is the code for the function.*
 ``` {r eval = FALSE}
@@ -140,7 +141,7 @@ div.blue { background-color:#e6f0ff; border-radius: 10px; padding: 20px;}
 <div class = "blue">
 ## Combined_cutoff
 
-*This function creates a dataframe of ID and data indices in which the assessment met the cutoff criteria for Time per Item as well as Item Score Standard Deviation. The user inputs their own cutoff for TPI. If responses to all items are mandatory, then the following response should be included:*
+*This function creates a dataframe of ID and data indices in which the assessment met the cutoff criteria for Time per Item OR Item Score Standard Deviation. The user inputs their own cutoff for TPI and Standard deviation. The user can also specify what type of comparison they would like to complete with each cutoff value using either __SD.condition =...__ and __TPI.condition=...__ Users can also specify the logical component for the criteria, specifying with __Combined.logic = ...__  If responses to all items are mandatory, then the following response should be included:*
 ```
 mandatory.response = TRUE
 ```
@@ -166,7 +167,7 @@ kable(Combined_cutoff_DF, caption = "Assessments Flagged by both TPI and SD Cuto
 
 ## Combined_cutoff_percent
 
-*This function creates a dataframe of ID and data indices in which the assessment met the cutoff criteria for Time per Item as well as Item Score Standard Deviation. The user inputs their own cutoff for TPI. If responses to all items are mandatory, then the following response should be included:*
+*This function creates a dataframe of ID and data indices in which the assessment met the cutoff criteria for Time per Item OR Item Score Standard Deviation. The user inputs their own cutoff for TPI and SD. The user can also specify what type of comparison they would like to complete with each cutoff value using either __SD.condition =...__ and __TPI.condition=...__ Users can also specify the logical component for the criteria, specifying with __Combined.logic = ...__ If responses to all items are mandatory, then the following response should be included:*
 ```
 mandatory.response = TRUE
 ```
