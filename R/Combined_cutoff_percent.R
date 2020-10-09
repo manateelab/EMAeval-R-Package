@@ -131,180 +131,180 @@ Combined_cutoff_percent <- function(data, SD.cutoff, SD.condition, TPI.cutoff, T
     SD_TPI_cond <- paste("SD:", SD.condition, " TPI:", TPI.condition, sep="")
     switch(Combined.logic,
            "and" = switch(SD_TPI_cond,
-                         "SD:<= TPI:<=" =     if(!is.na(data_TPI) & !is.na(data_SD) & data_TPI <= TPI.cutoff & data_SD <= SD.cutoff){
-                                                 data_point <- idx
-                                                 ID <- data[idx,ID.colname]
-                                                 flag_point <- cbind(ID, data_point)
-                                               },
-                         "SD:>= TPI:<=" =     if(!is.na(data_TPI) & !is.na(data_SD) & data_TPI <= TPI.cutoff & data_SD >= SD.cutoff){
-                           data_point <- idx
-                           ID <- data[idx,ID.colname]
-                           flag_point <- cbind(ID, data_point)
-                         },
-                         "SD:< TPI:<=" =     if(!is.na(data_TPI) & !is.na(data_SD) & data_TPI <= TPI.cutoff & data_SD < SD.cutoff){
-                           data_point <- idx
-                           ID <- data[idx,ID.colname]
-                           flag_point <- cbind(ID, data_point)
-                         },
-                         "SD:> TPI:<=" =     if(!is.na(data_TPI) & !is.na(data_SD) & data_TPI <= TPI.cutoff & data_SD > SD.cutoff){
-                           data_point <- idx
-                           ID <- data[idx,ID.colname]
-                           flag_point <- cbind(ID, data_point)
-                         },
+                          "SD:<= TPI:<=" =     if((!is.na(data_TPI) & data_TPI <= TPI.cutoff) & (!is.na(data_SD) & data_SD <= SD.cutoff)){
+                            data_point <- idx
+                            ID <- data[idx,ID.colname]
+                            flag_point <- cbind(ID, data_point)
+                          }else {next},
+                          "SD:>= TPI:<=" =     if((!is.na(data_TPI) & data_TPI <= TPI.cutoff) & (!is.na(data_SD) & data_SD >= SD.cutoff)){
+                            data_point <- idx
+                            ID <- data[idx,ID.colname]
+                            flag_point <- cbind(ID, data_point)
+                          }else {next},
+                          "SD:< TPI:<=" =     if((!is.na(data_TPI) & data_TPI <= TPI.cutoff) & (!is.na(data_SD) & data_SD < SD.cutoff)){
+                            data_point <- idx
+                            ID <- data[idx,ID.colname]
+                            flag_point <- cbind(ID, data_point)
+                          }else {next},
+                          "SD:> TPI:<=" =     if((!is.na(data_TPI) & data_TPI <= TPI.cutoff) & (!is.na(data_SD) & data_SD > SD.cutoff)){
+                            data_point <- idx
+                            ID <- data[idx,ID.colname]
+                            flag_point <- cbind(ID, data_point)
+                          }else {next},
 
 
-                         "SD:<= TPI:>=" =     if(!is.na(data_TPI) & !is.na(data_SD) & data_TPI >= TPI.cutoff & data_SD <= SD.cutoff){
-                           data_point <- idx
-                           ID <- data[idx,ID.colname]
-                           flag_point <- cbind(ID, data_point)
-                         },
-                         "SD:>= TPI:>=" =     if(!is.na(data_TPI) & !is.na(data_SD) & data_TPI >= TPI.cutoff & data_SD >= SD.cutoff){
-                           data_point <- idx
-                           ID <- data[idx,ID.colname]
-                           flag_point <- cbind(ID, data_point)
-                         },
-                         "SD:< TPI:>=" =     if(!is.na(data_TPI) & !is.na(data_SD) & data_TPI >= TPI.cutoff & data_SD < SD.cutoff){
-                           data_point <- idx
-                           ID <- data[idx,ID.colname]
-                           flag_point <- cbind(ID, data_point)
-                         },
-                         "SD:> TPI:>=" =     if(!is.na(data_TPI) & !is.na(data_SD) & data_TPI >= TPI.cutoff & data_SD > SD.cutoff){
-                           data_point <- idx
-                           ID <- data[idx,ID.colname]
-                           flag_point <- cbind(ID, data_point)
-                         },
+                          "SD:<= TPI:>=" =     if((!is.na(data_TPI) & data_TPI >= TPI.cutoff) & (!is.na(data_SD) & data_SD <= SD.cutoff)){
+                            data_point <- idx
+                            ID <- data[idx,ID.colname]
+                            flag_point <- cbind(ID, data_point)
+                          }else {next},
+                          "SD:>= TPI:>=" =     if((!is.na(data_TPI) & data_TPI >= TPI.cutoff) & (!is.na(data_SD) & data_SD >= SD.cutoff)){
+                            data_point <- idx
+                            ID <- data[idx,ID.colname]
+                            flag_point <- cbind(ID, data_point)
+                          }else {next},
+                          "SD:< TPI:>=" =     if((!is.na(data_TPI) & data_TPI >= TPI.cutoff) & (!is.na(data_SD) & data_SD < SD.cutoff)){
+                            data_point <- idx
+                            ID <- data[idx,ID.colname]
+                            flag_point <- cbind(ID, data_point)
+                          }else {next},
+                          "SD:> TPI:>=" =     if((!is.na(data_TPI) & data_TPI >= TPI.cutoff) & (!is.na(data_SD) & data_SD > SD.cutoff)){
+                            data_point <- idx
+                            ID <- data[idx,ID.colname]
+                            flag_point <- cbind(ID, data_point)
+                          }else {next},
 
 
-                         "SD:<= TPI:<" =     if(!is.na(data_TPI) & !is.na(data_SD) & data_TPI < TPI.cutoff & data_SD <= SD.cutoff){
-                           data_point <- idx
-                           ID <- data[idx,ID.colname]
-                           flag_point <- cbind(ID, data_point)
-                         },
-                         "SD:>= TPI:<" =     if(!is.na(data_TPI) & !is.na(data_SD) & data_TPI < TPI.cutoff & data_SD >= SD.cutoff){
-                           data_point <- idx
-                           ID <- data[idx,ID.colname]
-                           flag_point <- cbind(ID, data_point)
-                         },
-                         "SD:< TPI:<" =     if(!is.na(data_TPI) & !is.na(data_SD) & data_TPI < TPI.cutoff & data_SD < SD.cutoff){
-                           data_point <- idx
-                           ID <- data[idx,ID.colname]
-                           flag_point <- cbind(ID, data_point)
-                         },
-                         "SD:> TPI:<" =     if(!is.na(data_TPI) & !is.na(data_SD) & data_TPI < TPI.cutoff & data_SD > SD.cutoff){
-                           data_point <- idx
-                           ID <- data[idx,ID.colname]
-                           flag_point <- cbind(ID, data_point)
-                         },
+                          "SD:<= TPI:<" =     if((!is.na(data_TPI) & data_TPI < TPI.cutoff) & (!is.na(data_SD) & data_SD <= SD.cutoff)){
+                            data_point <- idx
+                            ID <- data[idx,ID.colname]
+                            flag_point <- cbind(ID, data_point)
+                          }else {next},
+                          "SD:>= TPI:<" =     if((!is.na(data_TPI) & data_TPI < TPI.cutoff) & (!is.na(data_SD) & data_SD >= SD.cutoff)){
+                            data_point <- idx
+                            ID <- data[idx,ID.colname]
+                            flag_point <- cbind(ID, data_point)
+                          }else {next},
+                          "SD:< TPI:<" =     if((!is.na(data_TPI) & data_TPI < TPI.cutoff) & (!is.na(data_SD) & data_SD < SD.cutoff)){
+                            data_point <- idx
+                            ID <- data[idx,ID.colname]
+                            flag_point <- cbind(ID, data_point)
+                          }else {next},
+                          "SD:> TPI:<" =     if((!is.na(data_TPI) & data_TPI < TPI.cutoff) & (!is.na(data_SD) & data_SD > SD.cutoff)){
+                            data_point <- idx
+                            ID <- data[idx,ID.colname]
+                            flag_point <- cbind(ID, data_point)
+                          }else {next},
 
 
-                         "SD:<= TPI:>" =     if(!is.na(data_TPI) & !is.na(data_SD) & data_TPI > TPI.cutoff & data_SD <= SD.cutoff){
-                           data_point <- idx
-                           ID <- data[idx,ID.colname]
-                           flag_point <- cbind(ID, data_point)
-                         },
-                         "SD:>= TPI:>" =     if(!is.na(data_TPI) & !is.na(data_SD) & data_TPI > TPI.cutoff & data_SD >= SD.cutoff){
-                           data_point <- idx
-                           ID <- data[idx,ID.colname]
-                           flag_point <- cbind(ID, data_point)
-                         },
-                         "SD:< TPI:>" =     if(!is.na(data_TPI) & !is.na(data_SD) & data_TPI > TPI.cutoff & data_SD < SD.cutoff){
-                           data_point <- idx
-                           ID <- data[idx,ID.colname]
-                           flag_point <- cbind(ID, data_point)
-                         },
-                         "SD:> TPI:>" =     if(!is.na(data_TPI) & !is.na(data_SD) & data_TPI > TPI.cutoff & data_SD > SD.cutoff){
-                           data_point <- idx
-                           ID <- data[idx,ID.colname]
-                           flag_point <- cbind(ID, data_point)
-                         }
-                  ),
+                          "SD:<= TPI:>" =     if((!is.na(data_TPI) & data_TPI > TPI.cutoff) & (!is.na(data_SD) & data_SD <= SD.cutoff)){
+                            data_point <- idx
+                            ID <- data[idx,ID.colname]
+                            flag_point <- cbind(ID, data_point)
+                          }else {next},
+                          "SD:>= TPI:>" =     if((!is.na(data_TPI) & data_TPI > TPI.cutoff) & (!is.na(data_SD) & data_SD >= SD.cutoff)){
+                            data_point <- idx
+                            ID <- data[idx,ID.colname]
+                            flag_point <- cbind(ID, data_point)
+                          }else {next},
+                          "SD:< TPI:>" =     if((!is.na(data_TPI) & data_TPI > TPI.cutoff) & (!is.na(data_SD) & data_SD < SD.cutoff)){
+                            data_point <- idx
+                            ID <- data[idx,ID.colname]
+                            flag_point <- cbind(ID, data_point)
+                          }else {next},
+                          "SD:> TPI:>" =     if((!is.na(data_TPI) & data_TPI > TPI.cutoff) & (!is.na(data_SD) & data_SD > SD.cutoff)){
+                            data_point <- idx
+                            ID <- data[idx,ID.colname]
+                            flag_point <- cbind(ID, data_point)
+                          } else {next}
+           ),
            "or" = switch(SD_TPI_cond,
-                         "SD:<= TPI:<=" =     if(!is.na(data_TPI) & !is.na(data_SD) & data_TPI <= TPI.cutoff | data_SD <= SD.cutoff){
+                         "SD:<= TPI:<=" =     if((!is.na(data_TPI) & data_TPI <= TPI.cutoff) | (!is.na(data_SD) & data_SD <= SD.cutoff)){
                            data_point <- idx
                            ID <- data[idx,ID.colname]
                            flag_point <- cbind(ID, data_point)
-                         },
-                         "SD:>= TPI:<=" =     if(!is.na(data_TPI) & !is.na(data_SD) & data_TPI <= TPI.cutoff | data_SD >= SD.cutoff){
+                         }else {next},
+                         "SD:>= TPI:<=" =     if((!is.na(data_TPI) & data_TPI <= TPI.cutoff) | (!is.na(data_SD) & data_SD >= SD.cutoff)){
                            data_point <- idx
                            ID <- data[idx,ID.colname]
                            flag_point <- cbind(ID, data_point)
-                         },
-                         "SD:< TPI:<=" =     if(!is.na(data_TPI) & !is.na(data_SD) & data_TPI <= TPI.cutoff | data_SD < SD.cutoff){
+                         }else {next},
+                         "SD:< TPI:<=" =     if((!is.na(data_TPI) & data_TPI <= TPI.cutoff) | (!is.na(data_SD) & data_SD < SD.cutoff)){
                            data_point <- idx
                            ID <- data[idx,ID.colname]
                            flag_point <- cbind(ID, data_point)
-                         },
-                         "SD:> TPI:<=" =     if(!is.na(data_TPI) & !is.na(data_SD) & data_TPI <= TPI.cutoff | data_SD > SD.cutoff){
+                         }else {next},
+                         "SD:> TPI:<=" =     if((!is.na(data_TPI) & data_TPI <= TPI.cutoff) | (!is.na(data_SD) & data_SD > SD.cutoff)){
                            data_point <- idx
                            ID <- data[idx,ID.colname]
                            flag_point <- cbind(ID, data_point)
-                         },
+                         }else {next},
 
 
-                         "SD:<= TPI:>=" =     if(!is.na(data_TPI) & !is.na(data_SD) & data_TPI >= TPI.cutoff | data_SD <= SD.cutoff){
+                         "SD:<= TPI:>=" =     if((!is.na(data_TPI) & data_TPI >= TPI.cutoff) | (!is.na(data_SD) & data_SD <= SD.cutoff)){
                            data_point <- idx
                            ID <- data[idx,ID.colname]
                            flag_point <- cbind(ID, data_point)
-                         },
-                         "SD:>= TPI:>=" =     if(!is.na(data_TPI) & !is.na(data_SD) & data_TPI >= TPI.cutoff | data_SD >= SD.cutoff){
+                         }else {next},
+                         "SD:>= TPI:>=" =     if((!is.na(data_TPI) & data_TPI >= TPI.cutoff) | (!is.na(data_SD) & data_SD >= SD.cutoff)){
                            data_point <- idx
                            ID <- data[idx,ID.colname]
                            flag_point <- cbind(ID, data_point)
-                         },
-                         "SD:< TPI:>=" =     if(!is.na(data_TPI) & !is.na(data_SD) & data_TPI >= TPI.cutoff | data_SD < SD.cutoff){
+                         }else {next},
+                         "SD:< TPI:>=" =     if((!is.na(data_TPI) & data_TPI >= TPI.cutoff) | (!is.na(data_SD) & data_SD < SD.cutoff)){
                            data_point <- idx
                            ID <- data[idx,ID.colname]
                            flag_point <- cbind(ID, data_point)
-                         },
-                         "SD:> TPI:>=" =     if(!is.na(data_TPI) & !is.na(data_SD) & data_TPI >= TPI.cutoff | data_SD > SD.cutoff){
+                         }else {next},
+                         "SD:> TPI:>=" =     if((!is.na(data_TPI) & data_TPI >= TPI.cutoff) | (!is.na(data_SD) & data_SD > SD.cutoff)){
                            data_point <- idx
                            ID <- data[idx,ID.colname]
                            flag_point <- cbind(ID, data_point)
-                         },
+                         }else {next},
 
 
-                         "SD:<= TPI:<" =     if(!is.na(data_TPI) & !is.na(data_SD) & data_TPI < TPI.cutoff | data_SD <= SD.cutoff){
+                         "SD:<= TPI:<" =     if((!is.na(data_TPI) & data_TPI < TPI.cutoff) | (!is.na(data_SD) & data_SD <= SD.cutoff)){
                            data_point <- idx
                            ID <- data[idx,ID.colname]
                            flag_point <- cbind(ID, data_point)
-                         },
-                         "SD:>= TPI:<" =     if(!is.na(data_TPI) & !is.na(data_SD) & data_TPI < TPI.cutoff | data_SD >= SD.cutoff){
+                         }else {next},
+                         "SD:>= TPI:<" =     if((!is.na(data_TPI) & data_TPI < TPI.cutoff) | (!is.na(data_SD) & data_SD >= SD.cutoff)){
                            data_point <- idx
                            ID <- data[idx,ID.colname]
                            flag_point <- cbind(ID, data_point)
-                         },
-                         "SD:< TPI:<" =     if(!is.na(data_TPI) & !is.na(data_SD) & data_TPI < TPI.cutoff | data_SD < SD.cutoff){
+                         }else {next},
+                         "SD:< TPI:<" =     if((!is.na(data_TPI) & data_TPI < TPI.cutoff) | (!is.na(data_SD) & data_SD < SD.cutoff)){
                            data_point <- idx
                            ID <- data[idx,ID.colname]
                            flag_point <- cbind(ID, data_point)
-                         },
-                         "SD:> TPI:<" =     if(!is.na(data_TPI) & !is.na(data_SD) & data_TPI < TPI.cutoff | data_SD > SD.cutoff){
+                         }else {next},
+                         "SD:> TPI:<" =     if((!is.na(data_TPI) & data_TPI < TPI.cutoff) | (!is.na(data_SD) & data_SD > SD.cutoff)){
                            data_point <- idx
                            ID <- data[idx,ID.colname]
                            flag_point <- cbind(ID, data_point)
-                         },
+                         }else {next},
 
 
-                         "SD:<= TPI:>" =     if(!is.na(data_TPI) & !is.na(data_SD) & data_TPI > TPI.cutoff | data_SD <= SD.cutoff){
+                         "SD:<= TPI:>" =     if((!is.na(data_TPI) & data_TPI > TPI.cutoff) | (!is.na(data_SD) & data_SD <= SD.cutoff)){
                            data_point <- idx
                            ID <- data[idx,ID.colname]
                            flag_point <- cbind(ID, data_point)
-                         },
-                         "SD:>= TPI:>" =     if(!is.na(data_TPI) & !is.na(data_SD) & data_TPI > TPI.cutoff | data_SD >= SD.cutoff){
+                         }else {next},
+                         "SD:>= TPI:>" =     if((!is.na(data_TPI) & data_TPI > TPI.cutoff) | (!is.na(data_SD) & data_SD >= SD.cutoff)){
                            data_point <- idx
                            ID <- data[idx,ID.colname]
                            flag_point <- cbind(ID, data_point)
-                         },
-                         "SD:< TPI:>" =     if(!is.na(data_TPI) & !is.na(data_SD) & data_TPI > TPI.cutoff | data_SD < SD.cutoff){
+                         }else {next},
+                         "SD:< TPI:>" =     if((!is.na(data_TPI) & data_TPI > TPI.cutoff) | (!is.na(data_SD) & data_SD < SD.cutoff)){
                            data_point <- idx
                            ID <- data[idx,ID.colname]
                            flag_point <- cbind(ID, data_point)
-                         },
-                         "SD:> TPI:>" =     if(!is.na(data_TPI) & !is.na(data_SD) & data_TPI > TPI.cutoff | data_SD > SD.cutoff){
+                         }else {next},
+                         "SD:> TPI:>" =     if((!is.na(data_TPI) & data_TPI > TPI.cutoff) | (!is.na(data_SD) & data_SD > SD.cutoff)){
                            data_point <- idx
                            ID <- data[idx,ID.colname]
                            flag_point <- cbind(ID, data_point)
-                         }
+                         } else {next}
            )
 
            )
