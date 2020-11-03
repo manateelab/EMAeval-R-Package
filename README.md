@@ -424,12 +424,6 @@ Below are the functions in the R package EMAeval. The functions are:
 Each section will be dedicated to a particular function, giving an
 example of the usage with the EMAeval\_Data and showing the output.
 
-<style>
-div.blue { background-color:#e6f0ff; border-radius: 10px; padding: 20px;}
-</style>
-
-<div class = "blue">
-
 ## flagging\_df
 
 *This function creates a dataframe that reports Time to Complete (TTC),
@@ -628,8 +622,6 @@ NA
 
 </table>
 
-</div>
-
 ## flagging\_plots
 
 *This function creates a histograms of each of the calculations reported
@@ -645,12 +637,6 @@ flagging_plots(EMAeval_Data, ttc.colnames = c("StartDate", "EndDate"), item.coln
 *Note: the Longstring histogram has a much smaller scale for the Count.
 This is due to the lack of longstring values because many assessments do
 not have a Longstring value because all item responses differ.*
-
-<style>
-div.blue { background-color:#e6f0ff; border-radius: 10px; padding: 20px;}
-</style>
-
-<div class = "blue">
 
 ## TPI\_cutoff
 
@@ -1264,8 +1250,6 @@ Index\_of\_Flagged\_Assessment
 </tbody>
 
 </table>
-
-</div>
 
 </div>
 
@@ -2057,13 +2041,6 @@ Index\_of\_Flagged\_Assessment
 
 </div>
 
-<style>
-div.blue { background-color:#e6f0ff; border-radius: 10px; padding: 20px;}
-</style>
-
-<div class = "blue">
-
-
 ## Perc\_Mode\_cutoff
 
 *This function creates a dataframe of ID and data indices in which the
@@ -2193,8 +2170,6 @@ Index\_of\_Flagged\_Assessment
 </tbody>
 
 </table>
-
-</div>
 
 </div>
 
@@ -3073,12 +3048,6 @@ Index\_of\_Flagged\_Assessment
 
 </div>
 
-<style>
-div.blue { background-color:#e6f0ff; border-radius: 10px; padding: 20px;}
-</style>
-
-<div class = "blue">
-
 ## Combined\_cutoff\_percent
 
 *This function creates a dataframe of ID and percent of responses in
@@ -3166,5 +3135,3 @@ Percent\_Flagged
 </tbody>
 
 </table>
-
-</div>
