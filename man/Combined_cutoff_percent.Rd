@@ -10,6 +10,8 @@ Combined_cutoff_percent(
   SD.condition,
   TPI.cutoff,
   TPI.condition,
+  Perc.Mode.cutoff,
+  Perc.Mode.condition,
   Combined.logic,
   ttc.colnames,
   number.items,
@@ -29,7 +31,11 @@ Combined_cutoff_percent(
 
 \item{TPI.condition}{character string of condition that is desired for comparison of data to TPI cutoff value, i.e <, >=, etc. 'Default' logic set to "<=".}
 
-\item{Combined.logic}{character string of logic that is desired for classifying the use of the SD and TPI cutoff values, 'default' logic set to 'OR'.}
+\item{Perc.Mode.cutoff}{numeric cutoff value for the Percent of Item scores at Mode, 'default' value set to 0.7.}
+
+\item{Perc.Mode.condition}{character string of condition that is desired for comparison of data to Percent of Items at Mode cutoff value, i.e <, >=, etc. 'Default' logic set to ">=".}
+
+\item{Combined.logic}{character string of logic that is desired for classifying the use of the  SD, TPI, and  Percent of Items at Mode cutoff values, 'default' logic set to 'OR'.}
 
 \item{ttc.colnames}{vector of column names of "Start Time" and "End Time" to calculate time to complete, also can be "Completion Time" if already calculated.}
 
@@ -52,11 +58,12 @@ If there is variability in the items that are asked, mark the item \code{"mandat
 \code{Combined_cutoff_percent} returns dataframe of percent of assessment per ID flagged by two cutoff values: Standard Deviation per assessment and Time per Item.
 }
 \details{
-This function creates the dataframe that includes the ID and the percentage of assessments that met the cutoff criteria for \emph{Standard Deviation per assessment} as well as \emph{Time per Item}.
+This function creates the dataframe that includes the ID and the percentage of assessments that met the cutoff criteria for \emph{Standard Deviation per assessment}, \emph{Time per Item}, and \emph{Percent of Items at Mode }.
 The percentage is calculated as number of assessments that met both criteria by the total number of assessments for the individual ID.
-If an assessment has a Standard Deviation \strong{less than or equal to} the cutoff value and a Time per Item \strong{less than or equal to} the cutoff value, it will be flagged and placed in the dataframe.
-This function uses the Boolean logic \emph{"OR"} in order to identify assessments that meet both criteria.
-All comparisons and logical values for cutoff values can be changed within the
+If an assessment has a Standard Deviation \strong{less than or equal to} the cutoff value, a Time per Item \strong{less than or equal to} the cutoff value, or the Percent of Items scores at the Mode is \strong{greater than or equal to} the cutoff value, it will be flagged and placed in the dataframe.
+This function uses the Boolean logic \emph{"OR"} in order to identify assessments that meet any of the listed criteria.
+This function allows users to customize cutoff conditions for each separate cutoff to \strong{"<", ">", "<=", ">="}. The default values for the cutoff conditions will be set as described before.
+This function allows users to customize the Boolean logic to \strong{"AND", "OR"}. The default values for the Boolean logic will be set as \emph{"OR"} between all three criteria.
 }
 \references{
 Jaso, B.A., Kraus, N.I., Heller, A.S. (2020) \emph{Identification of careless responding in ecological momentary assessment: from post-hoc analyses to real-time data monitoring.}
@@ -64,5 +71,5 @@ Jaso, B.A., Kraus, N.I., Heller, A.S. (2020) \emph{Identification of careless re
 \seealso{
 \code{\link{Combined_cutoff}} for a similar function, presenting a dataframe that includes the ID and index of assessments that met the cutoff criteria specified rather than a dataframe of percentages.
 
-See the following functions for more information on Careless Response Identification in EMA: \code{\link{flagging_df}}, \code{\link{flagging_plots}}, \code{\link{longstringr}}, \code{\link{SD_cutoff}}, and \code{\link{TPI_cutoff}}
+See the following functions for more information on Careless Response Identification in EMA: \code{\link{flagging_df}}, \code{\link{flagging_plots}}, \code{\link{longstringr}}, \code{\link{SD_cutoff}}, \code{\link{TPI_cutoff}}, and \code{\link{Perc_Mode_cutoff}}.
 }

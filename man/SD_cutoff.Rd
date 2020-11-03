@@ -32,5 +32,7 @@ Jaso, B.A., Kraus, N.I., Heller, A.S. (2020) \emph{Identification of careless re
 \seealso{
 \code{\link{TPI_cutoff}} for a similar function, using Time per Item rather than Standard Deviation.
 
+\code{\link{Perc_Mode_cutoff}} for a similar function, using Percent of Items at Mode rather than Standard Deviation.
+
 See the following functions for more information on Careless Response Identification in EMA: \code{\link{flagging_df}}, \code{\link{flagging_plots}}, \code{\link{longstringr}}, \code{\link{Combined_cutoff}}, and \code{\link{Combined_cutoff_percent}}
 }

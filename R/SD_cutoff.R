@@ -11,6 +11,7 @@
 #' @param ID.colname character string of column name for ID of assessment.
 #' @return The item \code{"item.colnames"} must be the column names of all items to be included in the calculations for Item Score Standard Deviation. The base function \code{colnames} can be utilized if user prefers. If columns \code{x} through \code{y} are to be used for this calculation, the following syntax must be followed: \code{item.colnames = colnames(data[,x:y])} Example of use with column names can bee seen below.
 #' @seealso \code{\link{TPI_cutoff}} for a similar function, using Time per Item rather than Standard Deviation.
+#' @seealso \code{\link{Perc_Mode_cutoff}} for a similar function, using Percent of Items at Mode rather than Standard Deviation.
 #' @seealso See the following functions for more information on Careless Response Identification in EMA: \code{\link{flagging_df}}, \code{\link{flagging_plots}}, \code{\link{longstringr}}, \code{\link{Combined_cutoff}}, and \code{\link{Combined_cutoff_percent}}
 #' @references Jaso, B.A., Kraus, N.I., Heller, A.S. (2020) \emph{Identification of careless responding in ecological momentary assessment: from post-hoc analyses to real-time data monitoring.}
 #'
@@ -52,7 +53,7 @@ SD_cutoff <- function(data, cutoff, condition, item.colnames, ID.colname){
       }
 
 
-      # check to see if TPI is <= cutoff and paste into dataframe if so
+      # check to see if SD is <= (or other condition) cutoff and paste into dataframe if so
       data_point <- c()
       flag_point <- c()
  switch(condition,
@@ -82,7 +83,12 @@ SD_cutoff <- function(data, cutoff, condition, item.colnames, ID.colname){
     }
   )
   newDF <- as.data.frame(newDF)
-  colnames(newDF)[2] <- "Index_of_Flagged_Assessment"
-  newDF
+  if(length(colnames(newDF)) > 0){
+    colnames(newDF)[2] <- "Index_of_Flagged_Assessment"
+    newDF
+  } else {
+    print("There were no assessments flagged by the criteria listed.")
+  }
+
 
 }

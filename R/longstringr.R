@@ -1,8 +1,8 @@
 #' EMA Careless Response Longstring Vector
-#' 
+#'
 #' \code{longstringr} returns a vector of all Longstring values.
-#' 
-#' This function creates a vector of all Longstring values for the data. 
+#'
+#' This function creates a vector of all Longstring values for the data.
 #'
 #' @param data dataframe to be analyzed.
 #' @param item.colnames vector of column names of all items/questions to be used to calculate item score Standard Deviation and Longstring responses.
@@ -11,7 +11,7 @@
 #' @seealso \code{\link{flagging_plots}} for histograms of Time to Complete, Time per Item, Standard Deviation, and Longstring that were created from  \code{\link{flagging_df}}.
 #' @seealso The following functions once cutoff values have been determined: \code{\link{TPI_cutoff}}, \code{\link{SD_cutoff}}, \code{\link{Combined_cutoff}}, and \code{\link{Combined_cutoff_percent}}.
 #' @references Jaso, B.A., Kraus, N.I., Heller, A.S. (2020) \emph{Methods to automatically identify careless responding in ecological momentary assessment research: from post-hoc analyses to real-time data monitoring.}
-#'  
+#'
 #' @export
 
 longstringr <- function(data, item.colnames) {
@@ -20,7 +20,7 @@ longstringr <- function(data, item.colnames) {
   Mode_List <- NULL
 
   for (jdx in 1:nrow(data)){
-    new_mode = as.vector(apply(data[jdx, which(colnames(data) %in% item.colnames[!is.na(item.colnames)])], 1, DescTools::Mode))
+    new_mode = as.vector(apply(data[jdx, which(colnames(data) %in% item.colnames[!is.na(item.colnames)])], 1, DescTools::Mode, na.rm = TRUE))
     Mode_List <- c(Mode_List, new_mode)
   }
 

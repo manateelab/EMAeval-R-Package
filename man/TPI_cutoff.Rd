@@ -2,7 +2,7 @@
 % Please edit documentation in R/TPI_cutoff.R
 \name{TPI_cutoff}
 \alias{TPI_cutoff}
-\title{Identification of Careless Response Using Standard Deviation}
+\title{Identification of Careless Response Using Time Per Item}
 \usage{
 TPI_cutoff(
   data,
@@ -28,28 +28,30 @@ TPI_cutoff(
 
 \item{mandatory.response}{logical value based on whether response to items in each assessment were mandatory to complete.}
 
-\item{item.colnames}{vector of column names of all items/questions to be used to calculate item score Standard Deviation and Longstring responses.}
+\item{item.colnames}{vector of column names of all items/questions to be used to calculate time per item.}
 
 \item{ID.colname}{character string of column name for ID of assessment.}
 }
 \value{
-The item \code{"ttc.colnames"} must be the names of columns, corresponding to Start Time and End Time, ordered \code{ttc.colnames = c("StartTime", "EndTime")} start time first, follwed by end time. If the data includes assessment duration, then list the column name that corresponds with assessment completion: \code{ttc.colnames = "SurveyDuration"}
+The item \code{"ttc.colnames"} must be the names of columns, corresponding to Start Time and End Time, ordered \code{ttc.colnames = c("StartTime", "EndTime")} start time first, followed by end time. If the data includes assessment duration, then list the column name that corresponds with assessment completion: \code{ttc.colnames = "SurveyDuration"}
 
 The item \code{"mandatory.response"} should be \strong{\code{TRUE}} if participants were required to complete all items per assessment. This item should be \strong{\code{FALSE}} if not all items were required to be completed per assessment.
 
 If there is variability in the items that are asked, mark the item \code{"mandatory.response"} as \strong{\code{FALSE}} and ensure that \code{"item.colnames"} includes all items.
 }
 \description{
-\code{TPI_cutoff} returns dataframe of assessment flagged by Standard Deviation per assessment cutoff value.
+\code{TPI_cutoff} returns dataframe of assessment flagged by Time Per Item per assessment cutoff value.
 }
 \details{
-This function creates the dataframe that includes the ID and index of assessments that met the cutoff criterion for Standard Deviation per assessment. If an assessment has a Standard Deviation \strong{less than or equal to} the cutoff value, it will be flagged and placed in the dataframe.
+This function creates the dataframe that includes the ID and index of assessments that met the cutoff criterion for Time Per Item per assessment. If an assessment has a Time Per Item \strong{less than or equal to} the cutoff value, it will be flagged and placed in the dataframe.
 }
 \references{
 Jaso, B.A., Kraus, N.I., Heller, A.S. (2020) \emph{Identification of careless responding in ecological momentary assessment: from post-hoc analyses to real-time data monitoring.}
 }
 \seealso{
 \code{\link{SD_cutoff}} for a similar function, using Standard Deviation rather than Time per Item.
+
+\code{\link{Perc_Mode_cutoff}} for a similar function, using Percent of Items at Mode rather than Time per Item.
 
 See the following functions for more information on Careless Response Identification in EMA: \code{\link{flagging_df}}, \code{\link{flagging_plots}}, \code{\link{longstringr}}, \code{\link{Combined_cutoff}}, and \code{\link{Combined_cutoff_percent}}
 }

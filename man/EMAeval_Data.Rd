@@ -14,13 +14,13 @@ A dataframe with 200 rows and 11 variables:
 }
 }
 \source{
-This data set is ficticious data only to demonstrate the uses of the R package EMAeval. Developed by Noah Kraus.
+This data set is fictitious data only to demonstrate the uses of the R package EMAeval. Developed by Noah Kraus.
 }
 \usage{
 data(EMAeval_Data)
 }
 \description{
-This is a ficticious data set that has 4 "participants" who were sampled once every day, for 50 straight days. There are responses to 8 different items (Q1, Q2, Q3, etc.).
+This is a fictitious data set that has 4 "participants" who were sampled once every day, for 50 straight days. There are responses to 8 different items (Q1, Q2, Q3, etc.).
 This data can be used to help users understand the use of the EMAeval R Package.
 }
 \keyword{datasets}

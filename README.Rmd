@@ -1,7 +1,7 @@
 ---
 title: "EMAeval Description"
 author: "Noah Kraus"
-date: "10/07/2020"
+date: "11/03/2020"
 output: rmarkdown::github_document
 always_allow_html: TRUE
 ---
@@ -90,7 +90,7 @@ div.blue { background-color:#e6f0ff; border-radius: 10px; padding: 20px;}
 <div class = "blue">
 ## TPI_cutoff
 
-*This function creates a dataframe of ID and data indices in which the assessment met the cutoff criterion for Time per Item. The user inputs their own cutoff for TPI. The user can also specify what type of comparison they would like to complete with the cutoff value using  __TPI.condition =...__ If responses to all items are mandatory, then the following response should be included:*
+*This function creates a dataframe of ID and data indices in which the assessment met the cutoff criterion for Time per Item. The user inputs their own cutoff for TPI. The user can also specify what type of comparison they would like to complete with the cutoff value using  __condition =...__ If responses to all items are mandatory, then the following response should be included:*
 ```
 mandatory.response = TRUE
 ```
@@ -115,7 +115,7 @@ kable(TPI_cutoff_DF, caption = "Assessments Flagged by TPI Cutoff", row.names = 
 
 ## SD_cutoff
 
-*This function creates a dataframe of ID and data indices in which the assessment met the cutoff criterion for Item Score Standard Deviation. The user inputs their own cutoff for SD. The user can also specify what type of comparison they would like to complete with the cutoff value using  __SD.condition =...__*
+*This function creates a dataframe of ID and data indices in which the assessment met the cutoff criterion for Item Score Standard Deviation. The user inputs their own cutoff for SD. The user can also specify what type of comparison they would like to complete with the cutoff value using  __condition =...__*
 
 *Below is the code for the function.*
 ``` {r eval = FALSE}
@@ -139,15 +139,16 @@ kable(SD_cutoff_DF, caption = "Assessments Flagged by SD Cutoff", row.names = FA
 div.blue { background-color:#e6f0ff; border-radius: 10px; padding: 20px;}
 </style>
 <div class = "blue">
-## Combined_cutoff
 
-*This function creates a dataframe of ID and data indices in which the assessment met the cutoff criteria for Time per Item OR Item Score Standard Deviation. The user inputs their own cutoff for TPI and Standard deviation. The user can also specify what type of comparison they would like to complete with each cutoff value using either __SD.condition =...__ and __TPI.condition=...__ Users can also specify the logical component for the criteria, specifying with __Combined.logic = ...__  If responses to all items are mandatory, then the following response should be included:*
-```
-mandatory.response = TRUE
-```
+</div>
+
+## Perc_Mode_cutoff
+
+*This function creates a dataframe of ID and data indices in which the assessment met the cutoff criterion for the Percent of Items at Mode. The user inputs their own cutoff for Percent of Items at Mode. The user can also specify what type of comparison they would like to complete with the cutoff value using  __condition =...__*
+
 *Below is the code for the function.*
 ``` {r eval = FALSE}
-Combined_cutoff(EMAeval_Data, SD.cutoff = 5, SD.condition = "<=", TPI.cutoff = 1, TPI.condition = "<=", Combined.logic = "or", ttc.colnames = c("StartDate", "EndDate"),  number.items = 8, mandatory.response = TRUE, item.colnames = colnames(EMAeval_Data[,4:11]), ID.colname = "ID")
+Perc_Mode_cutoff(EMAeval_Data, cutoff = 0.7,  condition = ">=", item.colnames = colnames(EMAeval_Data[,4:11]), ID.colname = "ID")
 ```
 
 ```{r message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6,  echo=FALSE}
@@ -156,9 +157,37 @@ library(knitr)
 library(kableExtra)
 
 EMAeval_Data <- EMAeval::EMAeval_Data
-Combined_cutoff_DF <- Combined_cutoff(EMAeval_Data,SD.cutoff = 5, SD.condition = "<=", TPI.cutoff = 1, TPI.condition = "<=", Combined.logic = "or", ttc.colnames = c("StartDate", "EndDate"),  number.items = 8, mandatory.response = TRUE, item.colnames = colnames(EMAeval_Data[,4:11]), ID.colname = "ID")
+Perc_Mode_cutoff_DF <- Perc_Mode_cutoff(EMAeval_Data, cutoff = 0.7,  condition = ">=", item.colnames = colnames(EMAeval_Data[,4:11]), ID.colname = "ID")
 
-kable(Combined_cutoff_DF, caption = "Assessments Flagged by both TPI and SD Cutoffs", row.names = FALSE) %>%
+kable(Perc_Mode_cutoff_DF, caption = "Assessments Flagged by PErcent of Items at Mode Cutoff", row.names = FALSE) %>%
+  kable_styling() %>%
+  scroll_box(width = "100%" , height = "400px") 
+```
+
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 10px; padding: 20px;}
+</style>
+<div class = "blue">
+## Combined_cutoff
+
+*This function creates a dataframe of ID and data indices in which the assessment met the cutoff criteria for Time per Item OR Item Score Standard Deviation OR Percent of Items at Mode. The user inputs their own cutoff for TPI, SD and Percent of Items at Mode. The user can also specify what type of comparison they would like to complete with each cutoff value using either __SD.condition =...__ and __TPI.condition=...__ and __Perc.Mode.condition=...__ Users can also specify the logical component for the criteria, specifying with __Combined.logic = ...__ If responses to all items are mandatory, then the following response should be included:*
+```
+mandatory.response = TRUE
+```
+*Below is the code for the function.*
+``` {r eval = FALSE}
+Combined_cutoff(EMAeval_Data, SD.cutoff = 5, SD.condition = "<=", TPI.cutoff = 1, TPI.condition = "<=", Perc.Mode.cutoff = 0.7, Perc.Mode.condition = ">=", Combined.logic = "or", ttc.colnames = c("StartDate", "EndDate"),  number.items = 8, mandatory.response = TRUE, item.colnames = colnames(EMAeval_Data[,4:11]), ID.colname = "ID")
+```
+
+```{r message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6,  echo=FALSE}
+library(EMAeval)
+library(knitr)
+library(kableExtra)
+
+EMAeval_Data <- EMAeval::EMAeval_Data
+Combined_cutoff_DF <- Combined_cutoff(EMAeval_Data,SD.cutoff = 5, SD.condition = "<=", TPI.cutoff = 1, TPI.condition = "<=", Perc.Mode.cutoff = 0.7, Perc.Mode.condition = ">=", Combined.logic = "or", ttc.colnames = c("StartDate", "EndDate"),  number.items = 8, mandatory.response = TRUE, item.colnames = colnames(EMAeval_Data[,4:11]), ID.colname = "ID")
+
+kable(Combined_cutoff_DF, caption = "Assessments Flagged by TPI, SD or Percent of Items at Mode Cutoffs", row.names = FALSE) %>%
   kable_styling() %>%
   scroll_box(width = "100%" , height = "400px") 
 ```
@@ -167,13 +196,13 @@ kable(Combined_cutoff_DF, caption = "Assessments Flagged by both TPI and SD Cuto
 
 ## Combined_cutoff_percent
 
-*This function creates a dataframe of ID and data indices in which the assessment met the cutoff criteria for Time per Item OR Item Score Standard Deviation. The user inputs their own cutoff for TPI and SD. The user can also specify what type of comparison they would like to complete with each cutoff value using either __SD.condition =...__ and __TPI.condition=...__ Users can also specify the logical component for the criteria, specifying with __Combined.logic = ...__ If responses to all items are mandatory, then the following response should be included:*
+*This function creates a dataframe of ID and percent of responses in which assessments met the cutoff criteria for Time per Item OR Item Score Standard Deviation OR Percent of Items at Mode. The user inputs their own cutoff for TPI, SD and Percent of Items at Mode. The user can also specify what type of comparison they would like to complete with each cutoff value using either __SD.condition =...__ and __TPI.condition=...__ and __Perc.Mode.condition=...__ Users can also specify the logical component for the criteria, specifying with __Combined.logic = ...__ If responses to all items are mandatory, then the following response should be included:*
 ```
 mandatory.response = TRUE
 ```
 *Below is the code for the function.*
 ``` {r eval = FALSE}
-Combined_cutoff_percent(EMAeval_Data, SD.cutoff = 5, SD.condition = "<=", TPI.cutoff = 1, TPI.condition = "<=", Combined.logic = "or",, ttc.colnames = c("StartDate", "EndDate"),  number.items = 8, mandatory.response = TRUE, item.colnames = colnames(EMAeval_Data[,4:11]), ID.colname = "ID")
+Combined_cutoff_percent(EMAeval_Data, SD.cutoff = 5, SD.condition = "<=", TPI.cutoff = 1, TPI.condition = "<=",  Perc.Mode.cutoff = 0.7, Perc.Mode.condition = ">=", Combined.logic = "or",, ttc.colnames = c("StartDate", "EndDate"),  number.items = 8, mandatory.response = TRUE, item.colnames = colnames(EMAeval_Data[,4:11]), ID.colname = "ID")
 ```
 
 ```{r message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6,  echo=FALSE}
@@ -182,9 +211,9 @@ library(knitr)
 library(kableExtra)
 
 EMAeval_Data <- EMAeval::EMAeval_Data
-Combined_cutoff_percent_DF <- Combined_cutoff_percent(EMAeval_Data, SD.cutoff = 5, SD.condition = "<=", TPI.cutoff = 1, TPI.condition = "<=", Combined.logic = "or", ttc.colnames = c("StartDate", "EndDate"),  number.items = 8, mandatory.response = TRUE, item.colnames = colnames(EMAeval_Data[,4:11]), ID.colname = "ID")
+Combined_cutoff_percent_DF <- Combined_cutoff_percent(EMAeval_Data, SD.cutoff = 5, SD.condition = "<=", TPI.cutoff = 1, TPI.condition = "<=",  Perc.Mode.cutoff = 0.7, Perc.Mode.condition = ">=", Combined.logic = "or", ttc.colnames = c("StartDate", "EndDate"),  number.items = 8, mandatory.response = TRUE, item.colnames = colnames(EMAeval_Data[,4:11]), ID.colname = "ID")
 
-kable(Combined_cutoff_percent_DF, caption = "Percentage of Assessments Flagged by both TPI and SD Cutoffs", row.names = FALSE) %>%
+kable(Combined_cutoff_percent_DF, caption = "Percentage of Assessments Flagged by TPI, SD or Percent of Items at Mode Cutoffs", row.names = FALSE) %>%
   kable_styling()
 ```
 

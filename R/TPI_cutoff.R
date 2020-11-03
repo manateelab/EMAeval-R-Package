@@ -1,8 +1,8 @@
-#' Identification of Careless Response Using Standard Deviation
+#' Identification of Careless Response Using Time Per Item
 #'
-#' \code{TPI_cutoff} returns dataframe of assessment flagged by Standard Deviation per assessment cutoff value.
+#' \code{TPI_cutoff} returns dataframe of assessment flagged by Time Per Item per assessment cutoff value.
 #'
-#' This function creates the dataframe that includes the ID and index of assessments that met the cutoff criterion for Standard Deviation per assessment. If an assessment has a Standard Deviation \strong{less than or equal to} the cutoff value, it will be flagged and placed in the dataframe.
+#' This function creates the dataframe that includes the ID and index of assessments that met the cutoff criterion for Time Per Item per assessment. If an assessment has a Time Per Item \strong{less than or equal to} the cutoff value, it will be flagged and placed in the dataframe.
 #'
 #' @param data dataframe to be analyzed.
 #' @param cutoff numeric cutoff value for Time per Item, 'default' value set to 1 second.
@@ -10,12 +10,13 @@
 #' @param ttc.colnames vector of column names of "Start Time" and "End Time" to calculate time to complete, also can be "Completion Time" if already calculated.
 #' @param number.items integer, number of items per assessment.
 #' @param mandatory.response logical value based on whether response to items in each assessment were mandatory to complete.
-#' @param item.colnames vector of column names of all items/questions to be used to calculate item score Standard Deviation and Longstring responses.
+#' @param item.colnames vector of column names of all items/questions to be used to calculate time per item.
 #' @param ID.colname character string of column name for ID of assessment.
-#' @return The item \code{"ttc.colnames"} must be the names of columns, corresponding to Start Time and End Time, ordered \code{ttc.colnames = c("StartTime", "EndTime")} start time first, follwed by end time. If the data includes assessment duration, then list the column name that corresponds with assessment completion: \code{ttc.colnames = "SurveyDuration"}
+#' @return The item \code{"ttc.colnames"} must be the names of columns, corresponding to Start Time and End Time, ordered \code{ttc.colnames = c("StartTime", "EndTime")} start time first, followed by end time. If the data includes assessment duration, then list the column name that corresponds with assessment completion: \code{ttc.colnames = "SurveyDuration"}
 #' @return The item \code{"mandatory.response"} should be \strong{\code{TRUE}} if participants were required to complete all items per assessment. This item should be \strong{\code{FALSE}} if not all items were required to be completed per assessment.
 #' @return If there is variability in the items that are asked, mark the item \code{"mandatory.response"} as \strong{\code{FALSE}} and ensure that \code{"item.colnames"} includes all items.
 #' @seealso \code{\link{SD_cutoff}} for a similar function, using Standard Deviation rather than Time per Item.
+#' @seealso \code{\link{Perc_Mode_cutoff}} for a similar function, using Percent of Items at Mode rather than Time per Item.
 #' @seealso See the following functions for more information on Careless Response Identification in EMA: \code{\link{flagging_df}}, \code{\link{flagging_plots}}, \code{\link{longstringr}}, \code{\link{Combined_cutoff}}, and \code{\link{Combined_cutoff_percent}}
 #' @references Jaso, B.A., Kraus, N.I., Heller, A.S. (2020) \emph{Identification of careless responding in ecological momentary assessment: from post-hoc analyses to real-time data monitoring.}
 #'
@@ -87,7 +88,7 @@ TPI_cutoff <- function(data, cutoff, condition, ttc.colnames, number.items, mand
     # TPI
     data_TPI <- (as.numeric(data_TTC) / as.numeric(item_length))
 
-    # check to see if TPI is "logic" cutoff and paste into dataframe if so
+    # check to see if TPI is <= (or other condition) cutoff and paste into dataframe if so
     data_point <- c()
     flag_point <- c()
     switch(condition,
@@ -116,7 +117,12 @@ TPI_cutoff <- function(data, cutoff, condition, ttc.colnames, number.items, mand
     newDF <- rbind(newDF, flag_point)
   }
   newDF <- as.data.frame(newDF)
-  colnames(newDF)[2] <- "Index_of_Flagged_Assessment"
-  newDF
+  if(length(colnames(newDF)) > 0){
+    colnames(newDF)[2] <- "Index_of_Flagged_Assessment"
+    newDF
+  } else {
+    print("There were no assessments flagged by the criteria listed.")
+  }
+
 
   }

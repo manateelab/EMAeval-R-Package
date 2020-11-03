@@ -2,6 +2,7 @@
 
 export(Combined_cutoff)
 export(Combined_cutoff_percent)
+export(Perc_Mode_cutoff)
 export(SD_cutoff)
 export(TPI_cutoff)
 export(flagging_df)
