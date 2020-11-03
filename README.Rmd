@@ -92,7 +92,7 @@ mandatory.response = TRUE
 TPI_cutoff(EMAeval_Data, cutoff = 1, condition = "<=",  ttc.colnames = c("StartDate", "EndDate"),  number.items = 8, mandatory.response = TRUE, item.colnames = colnames(EMAeval_Data[,4:11]), ID.colname = "ID")
 ```
 
-```{r message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6,  echo=FALSE}
+```{r message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6,  max.height = "400px",   echo=FALSE}
 library(EMAeval)
 library(knitr)
 library(kableExtra)
@@ -115,7 +115,7 @@ kable(TPI_cutoff_DF, caption = "Assessments Flagged by TPI Cutoff", row.names = 
 SD_cutoff(EMAeval_Data, cutoff = 5,  condition = "<=", item.colnames = colnames(EMAeval_Data[,4:11]), ID.colname = "ID")
 ```
 
-```{r message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6,  echo=FALSE}
+```{r message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6, max.height = "400px",  echo=FALSE}
 library(EMAeval)
 library(knitr)
 library(kableExtra)
@@ -141,7 +141,7 @@ kable(SD_cutoff_DF, caption = "Assessments Flagged by SD Cutoff", row.names = FA
 Perc_Mode_cutoff(EMAeval_Data, cutoff = 0.7,  condition = ">=", item.colnames = colnames(EMAeval_Data[,4:11]), ID.colname = "ID")
 ```
 
-```{r message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6,  echo=FALSE}
+```{r message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6,  max.height = "400px",  echo=FALSE}
 library(EMAeval)
 library(knitr)
 library(kableExtra)
@@ -167,7 +167,7 @@ mandatory.response = TRUE
 Combined_cutoff(EMAeval_Data, SD.cutoff = 5, SD.condition = "<=", TPI.cutoff = 1, TPI.condition = "<=", Perc.Mode.cutoff = 0.7, Perc.Mode.condition = ">=", Combined.logic = "or", ttc.colnames = c("StartDate", "EndDate"),  number.items = 8, mandatory.response = TRUE, item.colnames = colnames(EMAeval_Data[,4:11]), ID.colname = "ID")
 ```
 
-```{r message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6,  echo=FALSE}
+```{r message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6,  max.height = "400px",  echo=FALSE}
 library(EMAeval)
 library(knitr)
 library(kableExtra)
@@ -193,7 +193,7 @@ mandatory.response = TRUE
 Combined_cutoff_percent(EMAeval_Data, SD.cutoff = 5, SD.condition = "<=", TPI.cutoff = 1, TPI.condition = "<=",  Perc.Mode.cutoff = 0.7, Perc.Mode.condition = ">=", Combined.logic = "or",, ttc.colnames = c("StartDate", "EndDate"),  number.items = 8, mandatory.response = TRUE, item.colnames = colnames(EMAeval_Data[,4:11]), ID.colname = "ID")
 ```
 
-```{r message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6,  echo=FALSE}
+```{r message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6,  max.height = "400px",  echo=FALSE}
 library(EMAeval)
 library(knitr)
 library(kableExtra)
