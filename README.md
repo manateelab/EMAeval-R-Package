@@ -418,6 +418,7 @@ Below are the functions in the R package EMAeval. The functions are:
   - flagging\_plots
   - TPI\_cutoff
   - SD\_cutoff
+  - Perc\_Mode\_cutoff
   - Combined\_cutoff
   - Combined\_cutoff\_percent
 
