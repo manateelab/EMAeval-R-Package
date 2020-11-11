@@ -434,7 +434,9 @@ all item responses were different. The partial results of the
 flagging\_df function are based from the EMAeval\_Data Example above. *
 
 ``` r
-flaggingDF <- flagging_df(EMAeval_Data, ttc.colnames = c("StartDate", "EndDate"), item.colnames = colnames(EMAeval_Data[,4:11]))
+flaggingDF <- flagging_df(EMAeval_Data, 
+                          ttc.colnames = c("StartDate", "EndDate"), 
+                          item.colnames = colnames(EMAeval_Data[,4:11]))
 ```
 
 <table class="table" style="margin-left: auto; margin-right: auto;">
@@ -630,7 +632,10 @@ in the flagging\_df function. This can be used to help users identify
 the cutoff values for TPI and SD.*
 
 ``` r
-flagging_plots(EMAeval_Data, ttc.colnames = c("StartDate", "EndDate"), item.colnames = colnames(EMAeval_Data[,4:11]), number.items = 8)
+flagging_plots(EMAeval_Data, 
+               ttc.colnames = c("StartDate", "EndDate"), 
+               item.colnames = colnames(EMAeval_Data[,4:11]),
+               number.items = 8)
 ```
 
 <img src="README_files/figure-gfm/unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
@@ -653,7 +658,14 @@ following response should be included:*
 *Below is the code for the function.*
 
 ``` r
-TPI_cutoff(EMAeval_Data, cutoff = 1, condition = "<=",  ttc.colnames = c("StartDate", "EndDate"),  number.items = 8, mandatory.response = TRUE, item.colnames = colnames(EMAeval_Data[,4:11]), ID.colname = "ID")
+TPI_cutoff(EMAeval_Data, 
+           cutoff = 1, 
+           condition = "<=",  
+           ttc.colnames = c("StartDate", "EndDate"),  
+           number.items = 8,
+           mandatory.response = TRUE, 
+           item.colnames = colnames(EMAeval_Data[,4:11]), 
+           ID.colname = "ID")
 ```
 
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:400px; overflow-x: scroll; width:100%; ">
@@ -1265,7 +1277,11 @@ using **condition =…***
 *Below is the code for the function.*
 
 ``` r
-SD_cutoff(EMAeval_Data, cutoff = 5,  condition = "<=", item.colnames = colnames(EMAeval_Data[,4:11]), ID.colname = "ID")
+SD_cutoff(EMAeval_Data, 
+          cutoff = 5,  
+          condition = "<=", 
+          item.colnames = colnames(EMAeval_Data[,4:11]), 
+          ID.colname = "ID")
 ```
 
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:400px; overflow-x: scroll; width:100%; ">
@@ -2053,7 +2069,11 @@ with the cutoff value using **condition =…***
 *Below is the code for the function.*
 
 ``` r
-Perc_Mode_cutoff(EMAeval_Data, cutoff = 0.7,  condition = ">=", item.colnames = colnames(EMAeval_Data[,4:11]), ID.colname = "ID")
+Perc_Mode_cutoff(EMAeval_Data, 
+                 cutoff = 0.7,  
+                 condition = ">=", 
+                 item.colnames = colnames(EMAeval_Data[,4:11]), 
+                 ID.colname = "ID")
 ```
 
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:400px; overflow-x: scroll; width:100%; ">
@@ -2192,7 +2212,15 @@ be included:*
 *Below is the code for the function.*
 
 ``` r
-Combined_cutoff(EMAeval_Data, SD.cutoff = 5, SD.condition = "<=", TPI.cutoff = 1, TPI.condition = "<=", Perc.Mode.cutoff = 0.7, Perc.Mode.condition = ">=", Combined.logic = "or", ttc.colnames = c("StartDate", "EndDate"),  number.items = 8, mandatory.response = TRUE, item.colnames = colnames(EMAeval_Data[,4:11]), ID.colname = "ID")
+Combined_cutoff(EMAeval_Data, 
+                SD.cutoff = 5, SD.condition = "<=", 
+                TPI.cutoff = 1, TPI.condition = "<=", 
+                Perc.Mode.cutoff = 0.7, Perc.Mode.condition = ">=", 
+                Combined.logic = "or", 
+                ttc.colnames = c("StartDate", "EndDate"), 
+                number.items = 8, mandatory.response = TRUE, 
+                item.colnames = colnames(EMAeval_Data[,4:11]), 
+                ID.colname = "ID")
 ```
 
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:400px; overflow-x: scroll; width:100%; ">
@@ -3067,7 +3095,15 @@ following response should be included:*
 *Below is the code for the function.*
 
 ``` r
-Combined_cutoff_percent(EMAeval_Data, SD.cutoff = 5, SD.condition = "<=", TPI.cutoff = 1, TPI.condition = "<=",  Perc.Mode.cutoff = 0.7, Perc.Mode.condition = ">=", Combined.logic = "or",, ttc.colnames = c("StartDate", "EndDate"),  number.items = 8, mandatory.response = TRUE, item.colnames = colnames(EMAeval_Data[,4:11]), ID.colname = "ID")
+Combined_cutoff_percent(EMAeval_Data, 
+                        SD.cutoff = 5, SD.condition = "<=", 
+                        TPI.cutoff = 1, TPI.condition = "<=",  
+                        Perc.Mode.cutoff = 0.7, Perc.Mode.condition = ">=", 
+                        Combined.logic = "or",
+                        ttc.colnames = c("StartDate", "EndDate"),  
+                        number.items = 8, mandatory.response = TRUE, 
+                        item.colnames = colnames(EMAeval_Data[,4:11]), 
+                        ID.colname = "ID")
 ```
 
 <table class="table" style="margin-left: auto; margin-right: auto;">
