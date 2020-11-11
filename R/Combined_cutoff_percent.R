@@ -118,7 +118,7 @@ Combined_cutoff_percent <- function(data, SD.cutoff, SD.condition, TPI.cutoff, T
       endtime <- lubridate::ymd_hms(data[idx, which(colnames(data) %in% ttc.colnames[2])])
       data_TTC <- as.numeric(endtime-starttime, units = "secs")
     } else if (length(ttc.colnames[!is.na(ttc.colnames)]) == 1){
-      data_TTC <- (ttc.colnames[!is.na(ttc.colnames)])
+      data_TTC <- (data[idx, ttc.colnames[!is.na(ttc.colnames)]])
     } else {
       data_TTC <- NA
     }
